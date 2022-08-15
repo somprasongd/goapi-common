@@ -15,7 +15,8 @@ type HContext interface {
 	RequestId() string
 
 	// Request
-
+	ClientIP() string
+	Domain() string
 	// Return HTTP method of the request.
 	Method() string
 	// Return path part of the request URL.
@@ -33,10 +34,11 @@ type HContext interface {
 	// or get variables scoped from the request
 	Locals(key string, value ...interface{}) interface{}
 
-	// middleware
+	// Middleware
 	Next() error
 
-	// response
+	// Response
 	SendStatus(status int) error
 	SendJSON(status int, data interface{}) error
+	StatusCode() int
 }
